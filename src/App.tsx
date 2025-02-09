@@ -1,17 +1,13 @@
-import characters from "./fetchCharacters"
+import characters from "@/fetchCharacters"
+import Cards from "@/components/Cards"
+import Header from "@/components/Header"
 
 function App() {
+    if (!characters) throw new Error("Failed to fetch characters")
     return (
         <div>
-            <h1>Top 12 Anime Characters</h1>
-            <ul>
-                {characters?.map((character) => (
-                    <li key={character.mal_id}>
-                        <img src={character.image_url} alt={character.name} />
-                        <p>{character.name}</p>
-                    </li>
-                ))}
-            </ul>
+            <Header />
+            <Cards characters={characters} />
         </div>
     )
 }

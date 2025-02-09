@@ -18,7 +18,7 @@ interface Images {
     webp: Image & { small_image_url: string }
 }
 
-interface Character {
+interface CharacterFull {
     mal_id: number
     url: string
     images: Images
@@ -31,7 +31,13 @@ interface Character {
 
 interface Characters {
     pagination: Pagination
-    data: Character[]
+    data: CharacterFull[]
+}
+
+export interface Character {
+    mal_id: number
+    name: string
+    image_url: string
 }
 
 async function fetchCharacters(): Promise<Characters | null> {
@@ -53,7 +59,7 @@ const characters = data?.data.map((character) => {
         mal_id: character.mal_id,
         name: character.name,
         image_url: character.images.jpg.image_url,
-    }
+    } as Character
 })
 
 export default characters
