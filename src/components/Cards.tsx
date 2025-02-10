@@ -2,24 +2,33 @@ import { useState } from "react"
 import { Character } from "@/fetchCharacters"
 import Card from "@/components/Card"
 
-export default function Cards({ characters }: { characters: Character[] }) {
+type PropsType = {
+    characters: Character[]
+    score: number
+    setScore: React.Dispatch<React.SetStateAction<number>>
+}
+
+export default function Cards({ characters, score, setScore }: PropsType) {
     const [seen, setSeen] = useState<number[]>([])
     characters = characters.sort(() => Math.random() - 0.5)
-    console.log(characters)
 
     function handleClick(e: React.MouseEvent<HTMLDivElement>) {
         const mal_id = parseInt(e.currentTarget.dataset.mal_id!)
 
         if (seen.includes(mal_id)) {
             alert("Game Over!")
+            setScore(0)
             setSeen([])
             return
         }
+
+        setScore(score + 1)
         setSeen([...seen, mal_id])
     }
 
     if (seen.length === characters.length) {
         alert("You win!")
+        setScore(0)
         setSeen([])
     }
 

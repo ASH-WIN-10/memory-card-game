@@ -1,6 +1,6 @@
 import ScoreCard from "./ScoreCard"
 
-export default function Header() {
+export default function Header({ score }: { score: number }) {
     return (
         <header
             className="p-4 text-white bg-gray-900 flex flex-wrap gap-2 justify-center sm:justify-between items-center"
@@ -12,7 +12,7 @@ export default function Header() {
                     more than once!
                 </span>
             </div>
-            <ScoreCard />
+            <ScoreCard score={score} />
         </header>
     )
 }
