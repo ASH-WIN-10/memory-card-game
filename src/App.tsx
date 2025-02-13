@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import charactersPromise, { Character } from "@/fetchCharacters"
 import Cards from "@/components/Cards"
 import Header from "@/components/Header"
+import Background from "@/assets/background.jpg"
 
 function App() {
     const [score, setScore] = useState(0)
@@ -16,7 +17,7 @@ function App() {
 
     if (characters.length === 0) {
         return (
-            <div>
+            <div style={{ backgroundImage: `url(${Background})` }}>
                 <Header score={score} />
                 <div className="absolute top-0 h-full w-full grid place-items-center backdrop-blur-md">
                     <span className="text-3xl font-extrabold">Loading...</span>
@@ -26,7 +27,9 @@ function App() {
     }
 
     return (
-        <div>
+        <div
+            className="bg-center bg-cover"
+            style={{ backgroundImage: `url(${Background})` }}>
             <Header score={score} />
             <Cards characters={characters} score={score} setScore={setScore} />
         </div>

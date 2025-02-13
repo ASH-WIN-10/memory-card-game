@@ -2,18 +2,12 @@ import ScoreCard from "./ScoreCard"
 
 export default function Header({ score }: { score: number }) {
     return (
-        <header
-            className="p-4 text-white bg-gray-900 flex flex-wrap gap-2 justify-center sm:justify-between items-center"
-            style={{ boxShadow: "rgba(0, 0, 0, 0.4) 3px 5px 8px" }}>
-            <div className="flex flex-col gap-1">
-                <span className="text-5xl font-extrabold">
-                    Click &amp; Remember
-                </span>
-                <span className="text-sm">
-                    - Get points by clicking on an image but don't click on any
-                    more than once!
-                </span>
-            </div>
+        <header className="sticky top-0 z-10 p-4 text-white flex flex-wrap gap-2 justify-center sm:justify-between items-center">
+            <span
+                className="text-5xl font-extrabold bg-black/20 backdrop-blur-lg rounded-xl p-2 pl-4 pr-4 cursor-help"
+                title="Get points by clicking on an image but don't click on any more than once!">
+                Click &amp; Remember
+            </span>
             <ScoreCard score={score} />
         </header>
     )

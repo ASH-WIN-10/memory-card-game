@@ -15,7 +15,7 @@ export default function Card({ character, handleClick }: PropsType) {
             }}
             data-mal_id={character.mal_id}
             onClick={handleClick}>
-            <span className="w-full text-center text-xl font-bold text-white p-4 bg-black/50 backdrop-blur-md rounded-b-xl">
+            <span className="w-full text-center text-xl font-bold text-white p-4 bg-black/30 backdrop-blur-md rounded-b-xl">
                 {character.name}
             </span>
         </div>
