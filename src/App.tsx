@@ -1,12 +1,30 @@
-import { useState } from "react"
-import characters from "@/fetchCharacters"
+import { useEffect, useState } from "react"
+import charactersPromise, { Character } from "@/fetchCharacters"
 import Cards from "@/components/Cards"
 import Header from "@/components/Header"
 
 function App() {
     const [score, setScore] = useState(0)
+    const [characters, setCharacters] = useState<Character[]>([])
 
-    if (!characters) throw new Error("Failed to fetch characters")
+    useEffect(() => {
+        charactersPromise.then((charactersArr) => {
+            if (!charactersArr) throw new Error("Failed to fetch characters")
+            setCharacters(charactersArr)
+        })
+    }, [])
+
+    if (characters.length === 0) {
+        return (
+            <div>
+                <Header score={score} />
+                <div className="absolute top-0 h-full w-full grid place-items-center backdrop-blur-md">
+                    <span className="text-3xl font-extrabold">Loading...</span>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             <Header score={score} />

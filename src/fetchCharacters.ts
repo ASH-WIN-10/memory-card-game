@@ -53,13 +53,14 @@ async function fetchCharacters(): Promise<Characters | null> {
     return null
 }
 
-const data = await fetchCharacters()
-const characters = data?.data.map((character) => {
-    return {
-        mal_id: character.mal_id,
-        name: character.name,
-        image_url: character.images.jpg.image_url,
-    } as Character
-})
+const charactersPromise = fetchCharacters().then((data) =>
+    data?.data.map((character) => {
+        return {
+            mal_id: character.mal_id,
+            name: character.name,
+            image_url: character.images.jpg.image_url,
+        } as Character
+    }),
+)
 
-export default characters
+export default charactersPromise
