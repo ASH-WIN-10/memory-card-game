@@ -1,4 +1,4 @@
-import { Character } from "@/fetchCharacters"
+import { Character } from "@/scripts/fetchCharacters"
 
 type PropsType = {
     character: Character

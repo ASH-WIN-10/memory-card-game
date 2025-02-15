@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import charactersPromise, { Character } from "@/fetchCharacters"
+import charactersPromise, { Character } from "@/scripts/fetchCharacters"
 import Cards from "@/components/Cards"
 import Header from "@/components/Header"
 import ModeSelector from "@/components/ModeSelector"
