@@ -23,6 +23,40 @@ function Dialog({
     )
 }
 
+function getJumbledCharacters(
+    characters: Character[],
+    seenCharacters: number[],
+): Character[] {
+    const unseenCharacters = characters.filter(
+        (character) => !seenCharacters.includes(character.mal_id),
+    )
+    const jumbledCharacters: Character[] = []
+
+    if (unseenCharacters.length > 0) {
+        const randomUnseen =
+            unseenCharacters[
+                Math.floor(Math.random() * unseenCharacters.length)
+            ]
+        jumbledCharacters.push(randomUnseen)
+    }
+
+    const remainingCharacters = characters.filter(
+        (character) => !jumbledCharacters.includes(character),
+    )
+
+    while (jumbledCharacters.length < 4) {
+        const randomIndex = Math.floor(
+            Math.random() * remainingCharacters.length,
+        )
+        jumbledCharacters.push(remainingCharacters[randomIndex])
+        remainingCharacters.splice(randomIndex, 1)
+    }
+
+    jumbledCharacters.sort(() => Math.random() - 0.5)
+
+    return jumbledCharacters
+}
+
 type CardsPropsType = {
     characters: Character[]
     score: number
@@ -30,12 +64,11 @@ type CardsPropsType = {
 }
 
 export default function Cards({ characters, score, setScore }: CardsPropsType) {
+    const [jumbledCharacters, setJumbledCharacters] = useState<Character[]>([])
     const [seen, setSeen] = useState<number[]>([])
 
     const [result, setResult] = useState("")
     const dialogRef = useRef<HTMLDialogElement | null>(null)
-
-    characters = characters.sort(() => Math.random() - 0.5)
 
     function handleClick(e: React.MouseEvent<HTMLDivElement>) {
         const mal_id = parseInt(e.currentTarget.dataset.mal_id!)
@@ -59,12 +92,14 @@ export default function Cards({ characters, score, setScore }: CardsPropsType) {
             setResult("You win!")
             dialogRef.current?.showModal()
         }
-    }, [score, setScore, characters.length])
+
+        setJumbledCharacters(getJumbledCharacters(characters, seen))
+    }, [score, setScore, characters, seen])
 
     return (
         <div className="p-8 w-4/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5 m-auto justify-items-center">
             <Dialog result={result} dialogRef={dialogRef} />
-            {characters.map((character) => (
+            {jumbledCharacters.map((character) => (
                 <Card
                     key={character.mal_id}
                     character={character}
