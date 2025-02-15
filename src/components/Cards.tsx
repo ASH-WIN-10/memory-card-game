@@ -30,7 +30,6 @@ export default function Cards({
         const mal_id = parseInt(e.currentTarget.dataset.mal_id!)
 
         if (seen.includes(mal_id)) {
-            setScore(0)
             setSeen([])
             setResult("You lose!")
             dialogRef.current?.showModal()
@@ -43,7 +42,6 @@ export default function Cards({
 
     useEffect(() => {
         if (score === maxScore) {
-            setScore(0)
             setSeen([])
             setResult("You win!")
             dialogRef.current?.showModal()
@@ -58,6 +56,8 @@ export default function Cards({
                 result={result}
                 dialogRef={dialogRef}
                 setCurrentMode={setCurrentMode}
+                currentScore={score}
+                setScore={setScore}
             />
             {jumbledCharacters.map((character) => (
                 <Card
