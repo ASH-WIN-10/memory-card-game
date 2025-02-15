@@ -97,7 +97,7 @@ export default function Cards({ characters, score, setScore }: CardsPropsType) {
     }, [score, setScore, characters, seen])
 
     return (
-        <div className="p-8 w-4/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5 m-auto justify-items-center">
+        <div className="flex-1 flex pb-6 px-4 gap-10 flex-wrap items-center justify-center">
             <Dialog result={result} dialogRef={dialogRef} />
             {jumbledCharacters.map((character) => (
                 <Card

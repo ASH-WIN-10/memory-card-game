@@ -28,7 +28,7 @@ function App() {
 
     return (
         <div
-            className="bg-center bg-cover"
+            className="flex flex-col gap-4 bg-center bg-cover h-full sm:h-screen"
             style={{ backgroundImage: `url(${Background})` }}>
             <Header score={score} />
             <Cards characters={characters} score={score} setScore={setScore} />
