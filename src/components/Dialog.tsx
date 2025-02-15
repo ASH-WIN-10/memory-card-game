@@ -6,15 +6,18 @@ export default function Dialog({
     setCurrentMode,
     currentScore,
     setScore,
+    setResult,
 }: {
     result: string
     dialogRef: React.RefObject<HTMLDialogElement | null>
     setCurrentMode: React.Dispatch<React.SetStateAction<ModesType>>
     currentScore: number
     setScore: React.Dispatch<React.SetStateAction<number>>
+    setResult: React.Dispatch<React.SetStateAction<string>>
 }) {
     function handleClick() {
         setCurrentMode("")
+        setResult("")
         setScore(0)
         dialogRef.current?.close()
     }

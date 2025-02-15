@@ -41,14 +41,16 @@ export default function Cards({
     }
 
     useEffect(() => {
+        setJumbledCharacters(getJumbledCharacters(characters, seen))
+    }, [characters, seen])
+
+    useEffect(() => {
         if (score === maxScore) {
             setSeen([])
             setResult("You win!")
             dialogRef.current?.showModal()
         }
-
-        setJumbledCharacters(getJumbledCharacters(characters, seen))
-    }, [score, setScore, maxScore, characters, seen, setCurrentMode])
+    }, [score, maxScore])
 
     return (
         <div className="flex-1 flex pb-6 px-4 gap-10 flex-wrap items-center justify-center">
@@ -58,6 +60,7 @@ export default function Cards({
                 setCurrentMode={setCurrentMode}
                 currentScore={score}
                 setScore={setScore}
+                setResult={setResult}
             />
             {jumbledCharacters.map((character) => (
                 <Card
