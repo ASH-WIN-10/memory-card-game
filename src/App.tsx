@@ -32,6 +32,7 @@ function ModeSelector({
             <div className="flex flex-wrap justify-center gap-4">
                 {["Easy", "Medium", "Hard"].map((mode) => (
                     <button
+                        key={mode}
                         className="text-white w-64 text-4xl font-extrabold bg-black/20 backdrop-blur-lg p-6 rounded-xl"
                         onClick={handleClick}>
                         {mode}
@@ -45,6 +46,7 @@ function ModeSelector({
 function App() {
     const [score, setScore] = useState(0)
     const [maxScore, setMaxScore] = useState(0)
+    const [highScore, setHighScore] = useState(0)
     const [characters, setCharacters] = useState<Character[]>([])
     const [loading, setLoading] = useState(true)
     const [selectorMode, setSelectorMode] = useState(true)
@@ -66,7 +68,11 @@ function App() {
             <div
                 className="text-white flex flex-col gap-4 bg-center bg-cover h-full sm:h-screen"
                 style={{ backgroundImage: `url(${Background})` }}>
-                <Header score={score} />
+                <Header
+                    score={score}
+                    highScore={highScore}
+                    setHighScore={setHighScore}
+                />
                 <div className="absolute top-0 h-full w-full grid place-items-center backdrop-blur-md">
                     <Loader2 size={64} className="animate-spin" />
                 </div>
@@ -91,7 +97,11 @@ function App() {
         <div
             className="flex flex-col gap-4 bg-center bg-cover h-full sm:h-screen"
             style={{ backgroundImage: `url(${Background})` }}>
-            <Header score={score} />
+            <Header
+                score={score}
+                highScore={highScore}
+                setHighScore={setHighScore}
+            />
             <Cards
                 characters={characters}
                 score={score}

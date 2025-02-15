@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-export default function ScoreCard({ score }: { score: number }) {
-    const [highest, setHighest] = useState(0)
-
+export default function ScoreCard({ score, highScore, setHighScore }: { score: number, highScore: number, setHighScore: React.Dispatch<React.SetStateAction<number>> }) {
     useEffect(() => {
-        if (score > highest) {
-            setHighest(score)
+        if (score > highScore) {
+            setHighScore(score)
         }
-    }, [score, highest])
+    }, [score, highScore, setHighScore])
 
     return (
         <div className="text-2xl text-white text-center font-bold p-2 pl-4 pr-4 bg-black/20 backdrop-blur-lg rounded-xl">
             <span>Score: {score}</span>
             <br />
-            <span>Highest: {highest}</span>
+            <span>Highest: {highScore}</span>
         </div>
     )
 }
