@@ -22,8 +22,8 @@ export default function Dialog({
     return (
         <dialog
             ref={dialogRef}
-            className="h-64 w-4/5 md:w-1/2 lg:w-1/3 p-10 bg-black/20 text-white grid place-items-center backdrop-blur-lg rounded-xl backdrop:backdrop-blur-sm">
-            <div className="flex flex-col items-center gap-5">
+            className="w-4/5 md:w-1/2 lg:w-1/3 p-10 bg-black/20 text-white backdrop-blur-lg rounded-xl backdrop:backdrop-blur-sm">
+            <div className="h-56 flex flex-col justify-center items-center gap-10">
                 <div className="flex flex-col text-center">
                     <span className="text-4xl font-extrabold">
                         {result} {result === "You win!" ? "🎉" : "😢"}
