@@ -1,18 +1,17 @@
-## Memory Card Game
+## [Memory Card Game](https://click-remember.netlify.app/)
+- This is a simple memory card game created with React.
+- The game is simple, you have to click on a card and remember that you've clicked on it. The cards will shuffle and you have to click on a card that you haven't clicked on before. If you click on a card that you've already clicked on, you lose the game.
 
-### how it works
-1. there are multiple images of different characters
-2. you click on any of them
-3. you can't click on any character twice, this resets your score
-4. you can only click a character once and that increments your score
-5. you win if you clicked on all the characters once
-
-### implementation
-- get characters from the jikan api and store them in an array
-- randomize the 'characters' array and display the characters on the page
-- on clicking a character, store the character's id in a 'seen' array
-- also check if the id already exists in the 'seen' array
-    - if true -> display game over and restart the game
-    - if false -> update the score and randomize the 'characters' array again
-- if the 'seen' array's length reaches the 'characters' array length then display a 'you win' message and a button to restart the game
-- also display the current score and best score somewhere in the ui
+### To run the project locally
+1. Clone the repository
+```bash
+git clone https://github.com/ASH-WIN-10/memory-card-game.git
+```
+2. Install the dependencies
+```bash
+bun install
+```
+3. Run the development server
+```bash
+bun run dev
+```
