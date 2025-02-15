@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from "react"
 import { Character } from "@/fetchCharacters"
 import Card from "@/components/Card"
+import { ModesType } from "@/App"
 
 function Dialog({
     result,
     dialogRef,
-    setSelectorMode,
+    setCurrentMode,
 }: {
     result: string
     dialogRef: React.RefObject<HTMLDialogElement | null>
-    setSelectorMode: React.Dispatch<React.SetStateAction<boolean>>
+    setCurrentMode: React.Dispatch<React.SetStateAction<ModesType>>
 }) {
     function handleClick() {
-        setSelectorMode(true)
+        setCurrentMode("")
         dialogRef.current?.close()
     }
 
@@ -71,7 +72,7 @@ type CardsPropsType = {
     score: number
     setScore: React.Dispatch<React.SetStateAction<number>>
     maxScore: number
-    setSelectorMode: React.Dispatch<React.SetStateAction<boolean>>
+    setCurrentMode: React.Dispatch<React.SetStateAction<ModesType>>
 }
 
 export default function Cards({
@@ -79,7 +80,7 @@ export default function Cards({
     score,
     setScore,
     maxScore,
-    setSelectorMode,
+    setCurrentMode,
 }: CardsPropsType) {
     const [jumbledCharacters, setJumbledCharacters] = useState<Character[]>([])
     const [seen, setSeen] = useState<number[]>([])
@@ -111,14 +112,14 @@ export default function Cards({
         }
 
         setJumbledCharacters(getJumbledCharacters(characters, seen))
-    }, [score, setScore, maxScore, characters, seen, setSelectorMode])
+    }, [score, setScore, maxScore, characters, seen, setCurrentMode])
 
     return (
         <div className="flex-1 flex pb-6 px-4 gap-10 flex-wrap items-center justify-center">
             <Dialog
                 result={result}
                 dialogRef={dialogRef}
-                setSelectorMode={setSelectorMode}
+                setCurrentMode={setCurrentMode}
             />
             {jumbledCharacters.map((character) => (
                 <Card

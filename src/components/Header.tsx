@@ -1,6 +1,14 @@
+import { ModeHighScoreType, ModesType } from "@/App"
 import ScoreCard from "./ScoreCard"
 
-export default function Header(props: { score: number, highScore: number, setHighScore: React.Dispatch<React.SetStateAction<number>> }) {
+export type HeaderPropsType = {
+    score: number
+    currentMode: ModesType
+    modeHighScore: ModeHighScoreType
+    setModeHighScore: React.Dispatch<React.SetStateAction<ModeHighScoreType>>
+}
+
+export default function Header(props: HeaderPropsType) {
     return (
         <header className="z-10 p-4 text-white flex flex-wrap gap-4 justify-center sm:justify-between items-center">
             <span
